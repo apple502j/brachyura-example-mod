@@ -1,7 +1,9 @@
-# gradle
+# build tool
 
+.brachyura
 .gradle/
 build/
+/build/
 out/
 classes/
 
