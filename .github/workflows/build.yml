@@ -1,34 +1,24 @@
-# Automatically build the project and run any configured tests for every push
-# and submitted pull request. This can help catch issues that only occur on
-# certain platforms or Java versions, and provides a first line of defence
-# against bad commits.
-
 name: build
 on: [pull_request, push]
 
 jobs:
   build:
-    strategy:
-      matrix:
-        # Use these Java versions
-        java: [
-          16    # Minimum supported by Minecraft
-        ]
-        # and run on both Linux and Windows
-        os: [ubuntu-20.04, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout repository
-        uses: actions/checkout@v2
-      - name: setup jdk ${{ matrix.java }}
-        uses: actions/setup-java@v1
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
         with:
-          java-version: ${{ matrix.java }}
-      - name: build
-        run: java -jar brachyura-bootstrap-0.jar build
-      - name: capture build artifacts
-        if: ${{ runner.os == 'Linux' && matrix.java == '16' }} # Only upload artifacts built from latest java on one OS
-        uses: actions/upload-artifact@v2
+          path: |
+            .brachyura
+            ~/.brachyura
+          key: ${{ runner.os }}-brachyura-${{ hashFiles('**/Buildscript.java') }}
+          restore-keys: ${{ runner.os }}-brachyura
+      - uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: temurin
+      - run: java -jar brachyura-bootstrap-0.jar build
+      - uses: actions/upload-artifact@v2
         with:
           name: Artifacts
           path: build/libs/
