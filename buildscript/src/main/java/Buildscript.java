@@ -11,7 +11,7 @@ public class Buildscript extends FabricProject {
 	private static final String MC_VERSION = "1.18.1";
 	private static final String MC_MAJOR = "1.18";
 
-  // https://fabricmc.net/develop
+	// https://fabricmc.net/develop
 	private static final String YARN_VERSION = "22";
 	private static final String LOADER_VERSION = "0.13.3";
 	private static final String FABRIC_VERSION = "0.46.4";
@@ -44,7 +44,7 @@ public class Buildscript extends FabricProject {
 	}
 
 	@Override
-	public int getJavaVersion(){
+	public int getJavaVersion() {
 		return 17;
 	}
 
