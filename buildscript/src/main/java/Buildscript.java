@@ -2,19 +2,19 @@ import io.github.coolcrabs.brachyura.fabric.FabricLoader;
 import io.github.coolcrabs.brachyura.fabric.FabricMaven;
 import io.github.coolcrabs.brachyura.fabric.FabricProject;
 import io.github.coolcrabs.brachyura.fabric.Yarn;
-import io.github.coolcrabs.brachyura.maven.MavenId;
+//import io.github.coolcrabs.brachyura.maven.MavenId;
 import io.github.coolcrabs.brachyura.minecraft.Minecraft;
 import io.github.coolcrabs.brachyura.minecraft.VersionMeta;
 import net.fabricmc.mappingio.tree.MappingTree;
 
 public class Buildscript extends FabricProject {
-	private static final String MC_VERSION = "1.18.1";
+	private static final String MC_VERSION = "1.18.2";
 	private static final String MC_MAJOR = "1.18";
 
 	// https://fabricmc.net/develop
-	private static final String YARN_VERSION = "22";
+	private static final String YARN_VERSION = "2";
 	private static final String LOADER_VERSION = "0.13.3";
-	private static final String FABRIC_VERSION = "0.46.4";
+	private static final String FABRIC_VERSION = "0.50.0";
 
 	private static final String MOD_VERSION = "1.0.0";
 
@@ -47,9 +47,11 @@ public class Buildscript extends FabricProject {
 	public int getJavaVersion() {
 		return 17;
 	}
-
+	
 	@Override
 	public void getModDependencies(ModDependencyCollector d) {
+		/*
 		d.addMaven(FabricMaven.URL, new MavenId(FabricMaven.GROUP_ID + ".fabric-api", "fabric-api", FABRIC_VERSION + "+" + MC_MAJOR), ModDependencyFlag.RUNTIME, ModDependencyFlag.COMPILE);
+		*/
 	}
 }
